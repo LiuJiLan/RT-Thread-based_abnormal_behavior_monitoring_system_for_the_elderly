@@ -65,6 +65,7 @@ def read_from_file_and_store():
         if str_line == "":
             break
         data_list = str_line.split("\n")[0].split(",")
+
         if data_list[1] == "1":
             cur_sec = int(data_list[0])
             if first_angle_second is None:

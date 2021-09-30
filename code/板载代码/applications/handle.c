@@ -7,7 +7,10 @@
 
 #include "handle.h"
 #include "fall.h"
+#include <time.h>
 #include <math.h>
+
+#define DEBUG 1
 
 #define MAX_DATA_LENGTH 12
 #define MAX_DATA_NUM    (MAX_DATA_LENGTH / 2)
@@ -125,13 +128,16 @@ void deal_with_data(void) {
                 real_data_array[i] = data_to_float(data_field[i * 2], data_field[i * 2 + 1]) / 32768 * 180;
             }
 
-            data_sec = time((time_t *)NULL);
-            printf("%d,1", data_sec);
+            if (DEBUG) {
+                data_sec = time((time_t *)NULL);
+                printf("%ld,1", data_sec);
 
-            for (int i = 0; i < real_data_length; i++) {
-                printf(",%f", real_data_array[i]);
+                for (int i = 0; i < real_data_length; i++) {
+                    printf(",%f", real_data_array[i]);
+                }
+                printf("\n");
             }
-            printf("\n");
+
             return;
 
         case 0x03:
@@ -142,29 +148,29 @@ void deal_with_data(void) {
             }
 
             acc_vec = sqrtf(acc_vec);
-            // fall_decisionsignal(acc_vec);
+            fall_decisionsignal(acc_vec);
 
-            data_sec = time((time_t *)NULL);
-            printf("%d,3", data_sec);
+            if (DEBUG) {
+                data_sec = time((time_t *)NULL);
+                printf("%ld,3", data_sec);
 
-            for (int i = 0; i < real_data_length / 2; i++) {
-                printf(",%f", real_data_array[i]);
+                for (int i = 0; i < real_data_length / 2; i++) {
+                    printf(",%f", real_data_array[i]);
+                }
+                printf("\n");
             }
-            printf("\n");
-
-
 
             /*
-            for (int i = real_data_length / 2; i < real_data_length; i++) {
-                real_data_array[i] = data_to_float(data_field[i * 2], data_field[i * 2 + 1]) / 32768 * 4;
-            }
+             for (int i = real_data_length / 2; i < real_data_length; i++) {
+             real_data_array[i] = data_to_float(data_field[i * 2], data_field[i * 2 + 1]) / 32768 * 4;
+             }
 
-            printf("Gyro:\t");
-            for (int i = real_data_length / 2; i < real_data_length; i++) {
-                printf("%f\t", real_data_array[i]);
-            }
-            printf("\n");
-            */
+             printf("Gyro:\t");
+             for (int i = real_data_length / 2; i < real_data_length; i++) {
+             printf("%f\t", real_data_array[i]);
+             }
+             printf("\n");
+             */
 
             return;
 

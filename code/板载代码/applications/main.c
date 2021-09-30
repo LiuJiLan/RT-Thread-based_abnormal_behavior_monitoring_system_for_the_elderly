@@ -39,19 +39,17 @@ static rt_err_t uart_input(rt_device_t dev, rt_size_t size) {
 
 static void read_from_sensor(void) {
     unsigned char ch;
-    time_t now_second = time((time_t *)NULL);
+    // time_t now_second = time((time_t *)NULL);
 
     // 真实情况下应使用 while (1) 来一直轮询
 
-    while (now_second < cur_seconds) {
-    // while (1) {
+    // while (now_second < cur_seconds) {
+    while (1) {
         while (rt_device_read(sensor, -1, &ch, 1) != 1) {
             rt_sem_take(&rx_sem, RT_WAITING_FOREVER);
         }
         handle_data(ch);
-        // printf("%x\t", ch);
-
-        now_second = time((time_t *)NULL);
+        // now_second = time((time_t *)NULL);
     }
 }
 
