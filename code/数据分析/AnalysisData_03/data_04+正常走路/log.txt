@@ -1,0 +1,13 @@
+/Users/liujilan/Desktop/LDC/Competition/李明老师/数据分析/AnalysisData_03/venv/bin/python /Users/liujilan/Desktop/LDC/Competition/李明老师/数据分析/AnalysisData_03/main.py
+windows:
+200
+org:
+(1.6835267370309268, 0.7276114372939723)
+avg:
+(1.1191031146896944, 0.9639558065964741)
+bzc:
+(0.19879940945397884, 0.02449155440610239)
+fc:
+(0.24255127642737961, 0.032100065754171105)
+
+进程已结束，退出代码为 0
